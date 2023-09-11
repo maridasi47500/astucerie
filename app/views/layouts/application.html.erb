@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Astucerie</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= javascript_importmap_tags %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Astucerie</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav mr-auto">
+                            <%Cat.all.each_with_index do |h,i|%>
+                              <li class="nav-item <%if i == 0%>active<%end%>">
+                                <a class="nav-link" href="<%=mycat_path(name: h.name.parameterize)%>"><%=h.name%> </a>
+                                                  </li>
+                                                <%end%>
+                                                                                                                                                                                                      </ul>
+                                                                                                                                                                                                          <form class="form-inline my-2 my-lg-0">
+                                                                                                                                                                                                                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                                                                                                                                                                                                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                                                                                                                                                                                                            </form>
+                                                                                                                                                                                                                              </div>
+    </nav>
+    <%= yield %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

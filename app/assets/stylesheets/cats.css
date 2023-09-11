@@ -1,0 +1,14 @@
+
+	ul .nav-item {
+		    --bs-nav-link-color: black;
+		    --bs-nav-link-hover-color: white;
+		    transition:revert;
+	    }
+	    .nav-link{
+		    transition:revert;
+	    }
+
+
+.nav-item:hover {
+	background:purple;
+}
