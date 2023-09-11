@@ -1,3 +1,3 @@
 # README
- des astuces pour se somplificer la vie :sewing_needle:
+ des astuces pour se somplificer la vie :thread:
 # astucerie
