@@ -1,0 +1,40 @@
+<span class="backbtn" onclick="offinscription()"><</span>
+<span class="offbtn" onclick="off();offinscription()">X</span>
+<h2>Sign up</h2>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+    <div class="field form-floating mb-3">
+
+          <%= f.email_field :email, autofocus: true, autocomplete: "username", class:"form-control",id:"floatingEmailyes" %>
+              <%= f.label :email,"VOTRE EMAIL",for:"floatingEmailyes" %><br />
+                </div>
+    <div class="field form-floating mb-3">
+
+          <%= f.email_field :username, autofocus: true, autocomplete: "username", class:"form-control",id:"floatingInputyes" %>
+              <%= f.label :username,"VOTRE NOM D'UTILISATEUR",for:"floatingInputyes" %><br />
+                </div>
+
+                  <div class="field form-floating mb-3">
+
+                        <%= f.password_field :password, autocomplete: "current-password",id:"floatingPasswordyes",class:"form-control" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+                            <%= f.label :password,"VOTRE MOT DE PASSE", for: "floatingPasswordyes" %><br />
+                              </div>
+                  <div class="field form-floating mb-3">
+
+                        <%= f.password_field :password_confirmation, autocomplete: "current-password",id:"floatingPasswordConfirmyes",class:"form-control" %>
+                            <%= f.label :password_confirmation,"CONFIRMEZ VOTRE MOT DE PASSE", for: "floatingPasswordConfirmyes" %><br />
+                              </div>
+
+
+
+  <div class="actions">
+    <%= f.submit "S'INSCRIRE",class:"inscribtn" %>
+  </div>
+<% end %>
+
+<%#= render "users/shared/links" %>

@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%=@tip.title%></h1>
+<p>
+<span><img src="" class="pic-author"/> par <b class="author"></b></span>
+</p>
+<img class="pic-tip" src=""/>
+<p class="content-tip"><%=simple_format(@tip.content)%></p>
+
+<div>
+  <%= link_to "Edit this tip", edit_tip_path(@tip) %> |
+  <%= link_to "Back to tips", tips_path %>
+
+  <%= button_to "Destroy this tip", @tip, method: :delete %>
+</div>

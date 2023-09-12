@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Myfavs</h1>
+
+<div id="myfavs">
+  <% @myfavs.each do |myfav| %>
+    <%= render myfav %>
+    <p>
+      <%= link_to "Show this myfav", myfav %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New myfav", new_myfav_path %>

@@ -1,0 +1,2 @@
+module MyfavsHelper
+end

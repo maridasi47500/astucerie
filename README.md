@@ -1,3 +1,3 @@
 # README
- des astuces pour se somplificer la vie :thread:
+ des astuces pour se simplifier la vie :thread:
 # astucerie

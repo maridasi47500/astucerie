@@ -1,0 +1,26 @@
+<span class="offbtn" onclick="off()">X</span>
+
+<h2>Se connecter</h2>
+<p>Bienvenue ! Connectez-vous à votre compte:</p>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field form-floating mb-3">
+
+    <%= f.email_field :username, autofocus: true, autocomplete: "username", class:"form-control",id:"floatingInput" %>
+    <%= f.label :username,"VOTRE NOM D'UTILISATEUR",for:"floatingInput" %><br />
+  </div>
+
+  <div class="field form-floating mb-3">
+
+    <%= f.password_field :password, autocomplete: "current-password",id:"floatingPassword",class:"form-control" %>
+    <%= f.label :password,"VOTRE MOT DE PASSE", for: "floatingPassword" %><br />
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "SE CONNECTER",class:"connectbtn" %>
+  </div>
+<% end %>
+
+<%#= render "users/shared/links" %>
+<%=link_to "CREER UN COMPTE","",onclick:"oninscription();return false;"%>

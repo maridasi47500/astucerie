@@ -3,6 +3,9 @@ class CatsController < ApplicationController
   before_action :set_my_cat, only: %i[ show ]
 
   # GET /cats or /cats.json
+  def  myfav
+    @tips=[]
+  end
   def index
     @cats = Cat.all
   end
