@@ -1,0 +1,71 @@
+.mycontentastuce {
+	width:100%;
+	min-height:200px;
+}
+.abouttip {
+	    display: flex;
+	        justify-content: center;
+		    align-items: center;
+	    }
+    .abouttip > *{
+	    margin:0 20px;
+    }
+    .mynote {
+	        display: flex;
+		    font-size: 20px;
+	    }
+    .mynote > span{
+	    margin:0 5px;
+    }
+
+
+#comment_content {
+	width:500px;
+}
+main {
+	margin-left:100px;
+	margin-right:100px;
+}
+header {
+	width:100%;
+	text-align:center;
+}
+main a, main a:hover, main a:hover, main a:link, main a:visited {
+	    color: #ff4465ad;
+    }
+    p.noteastuce {
+	        text-align: center;
+	}
+	span.mystar {
+		    font-size: 52px;
+		        color: #bbbbbb;
+			cursor:pointer;
+		}
+		span.mystar.yellow{
+			color:#ffe624;
+		}
+		.mycatbreadscrumb::after{
+			content:"/";
+			margin-right:10px;
+			margin-left:10px;
+			pointer-events: none;
+		}
+		.mycatbreadscrumb::before{
+
+		}
+		.tdb-entry-category {
+			font-size:20px;
+			font-weight:900;
+			text-decoration:none;
+		}
+		.notemoystar.yellow{
+			color:yellow;
+		}
+		.linktofav{
+			position:relative;
+		}
+		.addremovefav{
+				    position: absolute;
+				        right: 10px;
+					    top: 10px;
+		}

@@ -1,15 +1,48 @@
-<p style="color: green"><%= notice %></p>
-
+<header>
+  <div class="tdb-category td-fix-index"><%@tip.cats.each_with_index do |cat,i|%><span class="<%= @tip.cats.length == (i+1) ? "" : "mycatbreadscrumb"%>"><a class="tdb-entry-category " href="/astuces/<%=cat.name.parameterize%>/"><span class="tdb-cat-bg"></span><%=cat.name%></a></span><%end%></div>
 <h1><%=@tip.title%></h1>
-<p>
-<span><img src="" class="pic-author"/> par <b class="author"></b></span>
-</p>
+<div class="abouttip">
+<span><img src="" class="pic-author"/> par <b class="author"><%=@tip.user.username%></b></span>
+<span><%=t("mycomment",count: @tip.comments.count)%></span>
+<div class="mynote"><%1.upto(5).each do |z| %><span class="notemoystar note_<%=z%>">&#x2605;</span><%end%><span class="note_total_nb">(0)</span></div>
+<%=link_to "Ajouter aux favoris", "", class:"addtofav"%>
+
+</div>
+</header>
+<div class="mytip-page">
+<section class="mytip-article">
 <img class="pic-tip" src=""/>
 <p class="content-tip"><%=simple_format(@tip.content)%></p>
+<p class="noteastuce a">Comment avez-vous trouvés cette astuce ?</p>
+<p class="noteastuce b">Cliquez sur une étoile pour la noter !</p>
+<p class="noteastuce c">
+<%1.upto(5).each do |x|%>
+  <span class="mystar" data-id="<%=x%>" onmouseleave="$('[data-id]').removeClass('yellow');$('.noteastuce.d').html('');" onmouseenter="<%1.upto(x).each do |y|%>$('[data-id=<%=y%>]').addClass('yellow');<%end%>$('.noteastuce.d').html('<%=Note.mynote(x)%>');">&#x2605;</span>
+<%end%>
+
+</p>
+<p class="noteastuce d">
+</p>
+<%=render @tip.comments%>
+<h6>LAISSER UN COMMENTAIRE</h6>
+<%if user_signed_in?%>
+  <%=render "comments/form",comment: @comment%>
+<%else%>
+  <%=link_to "Connectez vous pour laisser un commentaire", "", onclick:"on();return false;"%>
+<%end%>
+</div>
+</section>
+<section class="mytip-info">
+</section>
 
 <div>
   <%= link_to "Edit this tip", edit_tip_path(@tip) %> |
-  <%= link_to "Back to tips", tips_path %>
+  <%= link_to "Back to tips", tips_path %> |
 
   <%= button_to "Destroy this tip", @tip, method: :delete %>
 </div>
+<div hidden id="myroutedeletefav"><%=deletefav_myfavoritetips_path%></div>
+<div hidden id="myroutefav"><%=myfavoritetips_path%></div>
+<div hidden id="myroutenote"><%= notes_path%></div>
+<div hidden id="mytipid"><%=@tip.id%></div>
+<div hidden id="userid"><%=current_user.try(:id)%></div>

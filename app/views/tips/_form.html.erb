@@ -12,8 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+    <%= form.hidden_field :user_id %>
   </div>
 
   <div>
@@ -23,12 +22,18 @@
 
   <div>
     <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
+    <%= form.file_field :image %>
   </div>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+    <%= form.label :content, style: "display: block", class:"" %>
+    <%= form.text_area :content, class:"mycontentastuce" %>
+  </div>
+  <div>
+    <%= form.label :cat_ids, style: "display: block", class:"" %>
+    <%= form.select(:cat_ids, options_for_select(Cat.all.collect{|j|[j.name, j.id]}),{ :prompt => "Please select"},
+                                                                                                                                                                                                                { :multiple => true, :size => 5 }
+                                                                                                                                                                                                                                                 ) %>
   </div>
 
   <div>

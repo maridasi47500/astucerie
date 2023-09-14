@@ -11,20 +11,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
+    <%= form.hidden_field :user_id %>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
+    <%#= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
   </div>
 
-  <div>
-    <%= form.label :tip_id, style: "display: block" %>
-    <%= form.number_field :tip_id %>
-  </div>
+    <%= form.hidden_field :tip_id %>
 
   <div>
     <%= form.submit %>

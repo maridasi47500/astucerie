@@ -1,0 +1,15 @@
+<div class="col">
+  <%=link_to mytip_path(title: tip.title.parameterize), {class:"linktofav"} do%>
+      <div class="card">
+        <img src="/uploads/<%=tip.image%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=tip.title%></h5>
+                                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            </div>
+                                                </div>
+
+                                              <button data-inmyfav="<%=tip.inmyfavyesno(current_user, session[:myfav]).html_safe%>" type="button" data-id="<%=tip.id%>" class="addremovefav btn btn-light myfavoritetips">
+                                                <%=tip.inmyfav(current_user, session[:myfav]).html_safe%> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </button>
+                                              <%end%>
+                                                  </div>

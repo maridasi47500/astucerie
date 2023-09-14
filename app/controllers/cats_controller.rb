@@ -4,7 +4,7 @@ class CatsController < ApplicationController
 
   # GET /cats or /cats.json
   def  myfav
-    @tips=[]
+    @tips=user_signed_in? ? current_user.myfavs : Tip.where(id: session[:myfav].keys)
   end
   def index
     @cats = Cat.all
@@ -12,6 +12,7 @@ class CatsController < ApplicationController
 
   # GET /cats/1 or /cats/1.json
   def show
+    @mycats=Cat.counttips
   end
 
   # GET /cats/new

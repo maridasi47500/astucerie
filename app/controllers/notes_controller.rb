@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
+  protect_from_forgery except: [:create]
 
   # GET /notes or /notes.json
   def index
@@ -25,11 +26,13 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
+        #format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
         format.json { render :show, status: :created, location: @note }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        session[:mynote][note_params[:tip_id]]=note_params[:note]
+        @data={moy: note_params[:note],nbnote:1} 
+        #format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @data, status: :created }
       end
     end
   end

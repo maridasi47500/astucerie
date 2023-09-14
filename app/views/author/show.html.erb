@@ -1,0 +1,25 @@
+<%=content_for :title do%>
+  <%=@user.name%>, auteur/autrice sur
+<%end%>
+
+<p class="breadscrumb">Accueil > Auteurs > Articles postés par <%=@user.name%></p>
+<h1><%=@user.name%></h1>
+<p>
+<span class="nbtip-author"><%=t("myarticle",count: @user.tips.length)%></span>
+<span class="nbcom-author"><%=t("mycomment",count: @user.comments.length)%></span>
+</p>
+<div class="mytips">
+    <div class="div1"><%if @tips.length > 0%>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <%=render partial: "tips/othertip", as: :tip, collection: @tips%>
+                        </div>
+                          <%end%>
+                            <div class="div2"><div class="card" style="width: 18rem;">
+                                      <ul class="list-group list-group-flush">
+                                                <%@mycats.each do |cat|%>
+                                                            <li class="list-group-item"><span class="catname"><%=cat.name%></span><span class="tipnb"><%=cat.nbtip%></span></li>
+                                                                  <%end%>
+                                                                        </ul>
+                                                                            </div></div>
+
+    </div>

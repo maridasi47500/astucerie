@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Astucerie</title>
+    <title><%=yield :title%> Astucerie</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,7 +16,11 @@
     <nav class="navbar navbar-dark bg-dark">
               <a class="navbar-brand" href="" onclick="on();return false;">
                           se connecter/s'inscrire
+
                                 </a>
+                          <%if user_signed_in?%>
+                            <div class="signoutbtn">Bonjour <%=current_user.username%> <%= button_to 'deconnexion', destroy_user_session_path, method: :delete %></div>
+                          <%end%>
                                     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Astucerie</a>
@@ -31,6 +35,11 @@
                                 <a class="nav-link" href="<%=mycat_path(name: h.name.parameterize)%>"><%=h.name%> </a>
                                                   </li>
                                                 <%end%>
+                                                <%if user_signed_in?%>
+                              <li class="nav-item ">
+                                <a class="nav-link" href="<%=new_tip_path%>">Créer une nouvelle astuce</a>
+                                                  </li>
+                                                <%end%>
                                                                                                                                                                                                       </ul>
                                                                                                                                                                                                           <form class="form-inline my-2 my-lg-0">
                                                                                                                                                                                                                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -38,23 +47,40 @@
                                                                                                                                                                                                                             </form>
                                                                                                                                                                                                                             <button type="button" onclick="window.location='/mes-favoris'" class="btn btn-primary position-relative myfavoritetips">
                                                                                                                                                                                                                               &#9829;
-                                                                                                                                                                                                                                  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                                                                                                                                                                                                                  <span class="nb_tips position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                                                                                                                                                                                                                                     <%=@nb_tips%>
                                                                                                                                                                                                                                         <span class="visually-hidden">New alerts</span>
                                                                                                                                                                                                                                           </span>
                                                                                                                                                                                                                             </button>
                                                                                                                                                                                                                               </div>
     </nav>
+    <main>
+
     <%= yield %>
+    </main>
+      <p id="mynotice"><%= notice %> <%=alert%></p>
+
     <div id="overlay" >
       <div id="text"><%=render template: "users/sessions/new",locals: {resource: User.new, resource_name: :user}%></div>
     </div>
     <div id="overlayinscription" >
       <div id="textinscription"><%=render template: "users/registrations/new",locals:{resource: User.new, resource_name: :user}%></div>
     </div>
+     <script src="/js/jquery-3.6.0.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script>
+      function myFunction() {
+                // Get the snackbar DIV
+                var x = document.getElementById("mynotice");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+
       function on() {
                 document.getElementById("overlay").style.display = "block";
             }
@@ -69,6 +95,11 @@
       function offinscription() {
                 document.getElementById("overlayinscription").style.display = "none";
             }
+        <%if notice or alert%>
+          window.onload=function(){
+          myFunction();
+                }
+        <%end%>
     </script>
 
   </body>

@@ -59,3 +59,19 @@
 						    height:600px;
 
 					    }
+					    .mytips {
+						    display:flex;
+						    width:100%;
+					    }
+					    .mytips .div1 {
+						    width:70%;
+					    }
+					    .mytips .div2 {
+						    width:30%;
+					    }
+					    .catname {
+						    float:left;
+					    }
+					    .tipnb {
+						    float:right;
+					    }

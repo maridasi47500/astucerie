@@ -1,6 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @cat %>
+<p class="breadscrumb">Accueil > <%=@cat.name%></p>
+<h2><%= @cat.name %></h2>
+<p><i><%=@cat.description%></i></p>
+
+    <div class="card-group">
+      <div class="col w-50 h-100">
+        <%=render partial: "tips/mytip", as: :tip, collection: @cat.tips.firsttip%>
+      </div>
+      <div class="col w-50 h-50">
+        <%=render partial: "tips/mytip", as: :tip, collection: @cat.tips.secondtip%>
+      </div>
+      <div class="col w-25 h-50">
+        <%=render partial: "tips/mytip", as: :tip, collection: @cat.tips.thirdtip%>
+      </div>
+      <div class="col w-25 h-50">
+        <%=render partial: "tips/mytip", as: :tip, collection: @cat.tips.fourthtip%>
+      </div>
+    </div>
+
+    </div>
+<div class="mytips">
+  <div class="div1"><%if @cat.tips.tip5.length > 0%>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <%=render partial: "tips/othertip", as: :tip, collection: @cat.tips.tip5%>
+    </div>
+  <%end%>
+  </div>
+  <div class="div2"><div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <%@mycats.each do |cat|%>
+          <li class="list-group-item"><span class="catname"><%=cat.name%></span><span class="tipnb"><%=cat.nbtip%></span></li>
+      <%end%>
+      </ul>
+    </div>
+  </div>
+
+</div>
 
 <div>
   <%= link_to "Edit this cat", edit_cat_path(@cat) %> |
