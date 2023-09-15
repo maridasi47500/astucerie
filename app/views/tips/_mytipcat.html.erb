@@ -1,0 +1,9 @@
+  <%=link_to mytip_path(title: tip.title.parameterize) do%>
+      <div class="card">
+        <img src="/uploads/<%=tip.image%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=tip.title%></h5>
+                                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            </div>
+                                                </div>
+                                              <%end%>

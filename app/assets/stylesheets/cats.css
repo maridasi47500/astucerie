@@ -75,3 +75,61 @@
 					    .tipnb {
 						    float:right;
 					    }
+					    .trucastuce {
+						        font-size: 26px;
+							    color: #ff5370cf;
+							        font-weight: 900;
+							}
+							.mydiv{
+								display:inline-flex;
+								height:400px;
+							}
+							.article1, .article1 col, .article1 a {
+								    float: left;
+								        height: 100%;
+									    width: 50%;
+								    }
+							 .article1 a, .article1 .card {
+								    float: left;
+								        height: 100%;
+									    width: 100%;
+								    }
+
+							.article2{
+								float:right;
+								max-width:50%;
+								max-height:50%;
+								right:0;
+							}
+							.article3,.article4{
+								float:left;
+								max-width:50%;
+								height:100%;
+								right:0;
+							}
+							.article2 a, .article2 .card {
+								    height: 100%;
+							    }
+							
+							    .mytip-page {
+								    display:inline-block;
+								    width:100%;
+							    }
+							    .mytip-article {
+								    width:70%;
+								    float:left;
+							    }
+							    .mytip-info{
+								    width:30%;
+								    float:left;
+								   }
+								   .about-my-user {
+									 width:100%;
+									 border:1px solid black;
+									 margin-top:50px;
+									 text-align:center;
+									 vertical-align:middle;
+								   }
+								   .about-my-user b {
+									   font-size:20px;
+								   }

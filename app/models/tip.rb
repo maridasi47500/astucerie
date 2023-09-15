@@ -1,4 +1,5 @@
 class Tip < ApplicationRecord
+  paginates_per 14
   has_many :tips_cats
   belongs_to :user
   has_many :comments

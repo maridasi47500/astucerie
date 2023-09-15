@@ -30,10 +30,14 @@
 <%else%>
   <%=link_to "Connectez vous pour laisser un commentaire", "", onclick:"on();return false;"%>
 <%end%>
-</div>
+
 </section>
 <section class="mytip-info">
+  <div class="about-my-user">
+    <b><%=@tip.user.username%></b>
+  </div>
 </section>
+</div>
 
 <div>
   <%= link_to "Edit this tip", edit_tip_path(@tip) %> |
