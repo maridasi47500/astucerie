@@ -4,7 +4,7 @@ class CatsController < ApplicationController
 
   # GET /cats or /cats.json
   def  myfav
-    @tips=user_signed_in? ? current_user.myfavs : Tip.where(id: session[:myfav].keys)
+    @tips=user_signed_in? ? current_user.myfavtips : Tip.where(id: session[:myfav].keys)
   end
   def index
     @cats = Cat.all

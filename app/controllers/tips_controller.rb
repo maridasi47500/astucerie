@@ -14,6 +14,18 @@ class TipsController < ApplicationController
   def show
     @comment=Comment.new(user_id:current_user.try(:id),tip_id:@tip.id)
     @nb_notes=@tip.notes.length
+    
+    @moy=@tip.moy
+    @nbnote=@tip.nbnote
+    @sum=@tip.thissum
+    if !user_signed_in?
+      @othernote=session[:mynote][@tip.id.to_s].to_i
+      if @othernote
+        @nbnote+=1
+        @moy=(@sum+@othernote)/@nbnote
+      end
+      
+    end
   end
 
   # GET /tips/new

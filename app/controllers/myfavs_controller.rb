@@ -31,12 +31,15 @@ class MyfavsController < ApplicationController
       if @myfav.save
         #format.html { redirect_to myfav_url(@myfav), notice: "Myfav was successfully created." }
         format.json { render :show, status: :created, location: @myfav }
-      else
+      elsif !user_signed_in?
         p "error"
         session[:myfav][myfav_params[:tip_id]]="fav"
         @myfav={total_number: session[:myfav].keys.length,addedtomyfav:Tip.thismyfav, addedtomyfavyesno: "true", tip_id: myfav_params[:tip_id]}
         #format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @myfav, status: :created }
+      else
+        @myfav = Myfav.find_by(myfav_params)
+        format.json { render :show, status: :created }
       end
     end
   end
@@ -60,7 +63,8 @@ class MyfavsController < ApplicationController
     respond_to do |format|
       if @myfav and @myfav.destroy
       #format.html { redirect_to myfavs_url, notice: "Myfav was successfully destroyed." }
-      format.json { render json: @myfav }
+        @myfavok={total_number: @myfav.user.myfavs.length, addedtomyfav: Tip.thisnotmyfav,addedtomyfavyesno:"false",tip_id: myfav_params[:tip_id]}
+      format.json { render json: @myfavok }
       else
         session[:myfav].delete(myfav_params[:tip_id])
         @myfav={total_number: session[:myfav].keys.length, addedtomyfav: Tip.thisnotmyfav,addedtomyfavyesno:"false",tip_id: myfav_params[:tip_id]}

@@ -4,7 +4,7 @@
 <div class="abouttip">
 <span><img src="" class="pic-author"/> par <b class="author"><%=@tip.user.username%></b></span>
 <span><%=t("mycomment",count: @tip.comments.count)%></span>
-<div class="mynote"><%1.upto(5).each do |z| %><span class="notemoystar note_<%=z%>">&#x2605;</span><%end%><span class="note_total_nb">(0)</span></div>
+<div class="mynote"><%1.upto(5).each do |z| %><span class="notemoystar note_<%=z%> <%=z <= @moy ? "yellow" : ""%>">&#x2605;</span><%end%><span class="note_total_nb">(<%=@nbnote%>)</span></div>
 <%=link_to "Ajouter aux favoris", "", class:"addtofav"%>
 
 </div>

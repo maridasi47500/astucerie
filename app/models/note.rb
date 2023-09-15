@@ -16,10 +16,10 @@ class Note < ApplicationRecord
     end
   end
   def moy
-    Tip.joins(:notes).select("tips.id tipid, moy(notes.note) moynote").group("tipid").having("tipid = #{self.id}")[0].moynote.to_i
+    Tip.left_outer_joins(:notes).select("tips.id tipid, avg(notes.note) moynote").group("tipid").having("tipid = #{self.tip_id}")[0].moynote.to_i
   end
   def nbnote
-    Tip.joins(:notes).select("tips.id tipid, count(notes.id) nbnote").group("tipid").having("tipid = #{self.id}")[0].nbnote
+    Tip.left_outer_joins(:notes).select("tips.id tipid, count(notes.id) nbnote").group("tipid").having("tipid = #{self.tip_id}")[0].nbnote
   end
 
 end

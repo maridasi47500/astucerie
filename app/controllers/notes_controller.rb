@@ -29,10 +29,19 @@ class NotesController < ApplicationController
         #format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
         format.json { render :show, status: :created, location: @note }
       else
-        session[:mynote][note_params[:tip_id]]=note_params[:note]
-        @data={moy: note_params[:note],nbnote:1} 
-        #format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @data, status: :created }
+        p "my note"
+        p session[:mynote]
+        if session[:mynote] == []
+         session[:mynote] = {}
+        end
+        if !session[:mynote][note_params[:tip_id]]
+          session[:mynote][note_params[:tip_id]] = note_params[:note]
+          @data={moy: note_params[:note],nbnote:1} 
+          #format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @data, status: :created }
+        else
+          format.json { render json: {myerror: true}, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -4,8 +4,8 @@ class Tip < ApplicationRecord
   has_many :comments
   has_many :notes
   has_many :cats, through: :tips_cats
-  def inmyfav(user,sesionfav)
-    if (user and user.tips.include?(self)) or sesionfav[self.id.to_s] == "fav"
+  def inmyfav(myuser,sesionfav)
+    if (myuser and myuser.myfavtips.include?(self)) or sesionfav[self.id.to_s] == "fav"
       "&#x2665;"
     else
       " &#x2661;"
@@ -14,11 +14,20 @@ class Tip < ApplicationRecord
   def self.thismyfav
     " &#x2665;"
   end
+   def thissum
+         Tip.left_outer_joins(:notes).select("tips.id tipid, sum(notes.note) mysum").group("tipid").having("tipid = #{self.id}")[0].mysum.to_i
+           end
+   def moy
+         Tip.left_outer_joins(:notes).select("tips.id tipid, avg(notes.note) moynote").group("tipid").having("tipid = #{self.id}")[0].moynote.to_i
+           end
+     def nbnote
+           Tip.left_outer_joins(:notes).select("tips.id tipid, count(notes.id) mynbnote").group("tipid").having("tipid = #{self.id}")[0].mynbnote
+             end
   def self.thisnotmyfav
     " &#x2661;"
   end
-  def inmyfavyesno(user,sesionfav)
-    if (user and user.tips.include?(self)) or sesionfav[self.id.to_s] == "fav"
+  def inmyfavyesno(myuser,sesionfav)
+    if (myuser and myuser.myfavtips.include?(self)) or sesionfav[self.id.to_s] == "fav"
       "true"
     else
       " false"

@@ -15,4 +15,5 @@ class User < ApplicationRecord
        where("parameterize(username) like ?",x)[0]
          end
   has_many :myfavs
+  has_many :myfavtips, through: :myfavs, source: :tip, class_name: "Tip"
 end
